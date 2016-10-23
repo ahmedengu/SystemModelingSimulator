@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" style="height:100%;" ng-app="modeling" ng-controller="simCtrl">
-<head>
-    <meta charset="utf-8">
-    <title>System Modeling</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="System Modeling"/>
-    <meta name="description" content="System Modeling"/>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style-library-1.css" rel="stylesheet">
-    <link href="css/blocks.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://npmcdn.com/particlesjs@1.0.2/dist/particles.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-
-    <script>
+    <head>
+        <meta charset="utf-8">
+        <title>System Modeling</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="System Modeling" />
+        <meta name="description" content="System Modeling" />
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style-library-1.css" rel="stylesheet">
+        <link href="css/blocks.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://npmcdn.com/particlesjs@1.0.2/dist/particles.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script>
         var app = angular.module('modeling', []);
         app.controller('simCtrl', function ($scope) {
             $scope.show = "hide";
@@ -140,126 +138,151 @@
         };
 
     </script>
-    <style>
-
-        html, body {
+        <style>
+            html, body {
             margin: 0;
-        }
-
-        #myCanvas {
+            }
+            #myCanvas {
             position: absolute;
             display: block;
             top: 0;
             left: 0;
             z-index: 0;
-        }
+            }
 
-    </style>
-</head>
-<body>
-<canvas id="myCanvas"></canvas>
 
-<a href="https://github.com/ahmedengu/SystemModelingSimulator"><img
-        style="position: absolute; top: 0; right: 0; border: 0;"
-        src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
-        alt="Fork me on GitHub"
-        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-<header id="header-3" class="soft-scroll header-3">
-    <section class="hero">
-        <div class="container table-responsive">
-            <div class="brand">
-                <a href="#" class="white clouds-hover text-capitalize lead">Modeling</a>
-            </div>
 
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <div class="editContent">
-                    <h3 class="clouds">Enter Your Simulation Options<br></h3>
-                </div>
-                <div class="editContent">
-                    <div class="form-group">
-                        <input type="number" class="form-control" value="10" placeholder="Number of Customers"
-                               name="customers" ng-model="customers">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+    </head>
+    <body>
+        <canvas id="myCanvas"></canvas>
+        <a href="https://github.com/ahmedengu/SystemModelingSimulator">
+            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" data-animation-1 data-animation-trigger-1="load" data-animation-type-1="shake">
+        </a>
+        <header id="header-3" class="soft-scroll header-3">
+            <section class="hero">
+                <div class="container table-responsive">
+                    <div class="brand">
+                        <a href="#" class="white clouds-hover text-capitalize lead" data-animation-2 data-animation-trigger-2="load" data-animation-type-2="pulse">Modeling</a>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label clouds">Service Times</label>
-                        <textarea class="form-control" rows="3" name="serviceT" ng-model="serviceT">
+                    <div class="col-md-8 col-md-offset-2 text-center" data-animation-1 data-animation-trigger-1="load" data-animation-type-1="fadeIn">
+                        <div class="editContent">
+                            <h3 class="clouds">Enter Your Simulation Options<br></h3>
+                        </div>
+                        <div class="editContent">
+                            <div class="form-group">
+                                <input type="number" class="form-control" value="10" placeholder="Number of Customers" name="customers" ng-model="customers" >
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label clouds">Service Times</label>
+                                <textarea class="form-control" rows="3" name="serviceT" ng-model="serviceT" >
 </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <button class="btn btn-danger btn-block" ng-click="calc()" onclick="$('#tablesDiv').removeClass('hidden')" data-animation-1 data-animation-trigger-1="click" data-animation-type-1="pulse" data-animation-to-remove-1="pulse">Compute
+</button>
+                    </div>
+                    <div class="hidden" id="tablesDiv">
+                        <table class="bg-white table  table-hover " data-animation-1 data-animation-trigger-1="load" data-animation-type-1="fadeInDown">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Interarrival<br></th>
+                                    <th>arrival</th>
+                                    <th>serviceTime</th>
+                                    <th>service Begin</th>
+                                    <th>waiting Time</th>
+                                    <th>service End</th>
+                                    <th>time In System</th>
+                                    <th>idle Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="iteration in iterations">
+                                    <td>{{iteration.i}}</td>
+                                    <td>{{iteration.interArrival}}</td>
+                                    <td>{{iteration.arrival}}</td>
+                                    <td>{{iteration.serviceTime}}</td>
+                                    <td>{{iteration.serviceBegin}}</td>
+                                    <td>{{iteration.waitingTime}}</td>
+                                    <td>{{iteration.serviceEnd}}</td>
+                                    <td>{{iteration.timeInSystem}}</td>
+                                    <td>{{iteration.idleTime}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="bg-white table table-striped " data-animation-1 data-animation-trigger-1="load" data-animation-type-1="fadeInDown">
+                            <tbody>
+                                <tr>
+                                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑊𝑎𝑖𝑡𝑖𝑛𝑔 𝑇𝑖𝑚𝑒</td>
+                                    <td>{{summary.avg}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 (𝑤𝑎𝑖𝑡)</td>
+                                    <td>{{summary.wait}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝑖𝑑𝑙𝑒 𝑠𝑒𝑟𝑣𝑒𝑟</td>
+                                    <td>{{summary.idle}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑡𝑖𝑚𝑒</td>
+                                    <td>{{summary.serv}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑎𝑟𝑟𝑖𝑣𝑎𝑙𝑠</td>
+                                    <td>{{summary.inter}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑤𝑎𝑖𝑡𝑖𝑛𝑔 𝑡𝑖𝑚𝑒 𝑜𝑓 𝑡ℎ𝑜𝑠𝑒 𝑤ℎ𝑜 𝑤𝑎𝑖𝑡</td>
+                                    <td>{{summary.whoWait}}</td>
+                                </tr>
+                                <tr>
+                                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑎 𝑐𝑢𝑠𝑡𝑜𝑚𝑒𝑟 𝑠𝑝𝑒𝑛𝑑𝑠 𝑖𝑛 𝑡ℎ𝑒 𝑠𝑦𝑠𝑡𝑒𝑚</td>
+                                    <td>{{summary.avgInSys}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <button class="btn btn-danger btn-block" ng-click="calc()"
-                        onclick="$('#tablesDiv').removeClass('hidden')">Compute
-                </button>
-            </div>
-
-            <div class="hidden" id="tablesDiv">
-                <table class="bg-white table  table-hover ">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Interarrival<br></th>
-                        <th>arrival</th>
-                        <th>serviceTime</th>
-                        <th>service Begin</th>
-                        <th>waiting Time</th>
-                        <th>service End</th>
-                        <th>time In System</th>
-                        <th>idle Time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="iteration in iterations">
-                        <td>{{iteration.i}}</td>
-                        <td>{{iteration.interArrival}}</td>
-                        <td>{{iteration.arrival}}</td>
-                        <td>{{iteration.serviceTime}}</td>
-                        <td>{{iteration.serviceBegin}}</td>
-                        <td>{{iteration.waitingTime}}</td>
-                        <td>{{iteration.serviceEnd}}</td>
-                        <td>{{iteration.timeInSystem}}</td>
-                        <td>{{iteration.idleTime}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <table class="bg-white table table-striped ">
-                    <tbody>
-                    <tr>
-                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑊𝑎𝑖𝑡𝑖𝑛𝑔 𝑇𝑖𝑚𝑒</td>
-                        <td>{{summary.avg}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 (𝑤𝑎𝑖𝑡)</td>
-                        <td>{{summary.wait}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝑖𝑑𝑙𝑒 𝑠𝑒𝑟𝑣𝑒𝑟</td>
-                        <td>{{summary.idle}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑡𝑖𝑚𝑒</td>
-                        <td>{{summary.serv}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑎𝑟𝑟𝑖𝑣𝑎𝑙𝑠</td>
-                        <td>{{summary.inter}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑤𝑎𝑖𝑡𝑖𝑛𝑔 𝑡𝑖𝑚𝑒 𝑜𝑓 𝑡ℎ𝑜𝑠𝑒 𝑤ℎ𝑜 𝑤𝑎𝑖𝑡</td>
-                        <td>{{summary.whoWait}}</td>
-                    </tr>
-                    <tr>
-                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑎 𝑐𝑢𝑠𝑡𝑜𝑚𝑒𝑟 𝑠𝑝𝑒𝑛𝑑𝑠 𝑖𝑛 𝑡ℎ𝑒 𝑠𝑦𝑠𝑡𝑒𝑚</td>
-                        <td>{{summary.avgInSys}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-</header>
-
-
-</body>
+            </section>
+        </header>
+        <script type="text/javascript" src="https://cdn.rawgit.com/MhdAljuboori/6ea3a3fa48248e3a132a/raw/animator.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+    </body>
 </html>
