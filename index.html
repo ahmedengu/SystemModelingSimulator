@@ -3,35 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>System Modeling</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="System Modeling"/>
     <meta name="description" content="System Modeling"/>
-    <!-- Core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"
-          rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet">
-    <!-- Style Library -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style-library-1.css" rel="stylesheet">
-    <link href="css/plugins.css" rel="stylesheet">
     <link href="css/blocks.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://npmcdn.com/particlesjs@1.0.2/dist/particles.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
     <script>
         var app = angular.module('modeling', []);
         app.controller('simCtrl', function ($scope) {
+            $scope.show = "hide";
             $scope.customers = 10;
             $scope.serviceT = '[ { "time": 1, "prob": 0.1, "cProb": 0.1 }, { "time": 2, "prob": 0.2, "cProb": 0.3 }, { "time": 3, "prob": 0.3, "cProb": 0.6 }, { "time": 4, "prob": 0.25, "cProb": 0.85 }, { "time": 5, "prob": 0.1, "cProb": 0.95 }, { "time": 6, "prob": 0.05, "cProb": 1 } ]';
 
 
             $scope.calc = function () {
+                $scope.show = "show";
+
                 var customers = $scope.customers;
                 var serviceTimes = JSON.parse($scope.serviceT);
                 var iterations = [{
@@ -134,112 +128,138 @@
                 };
                 $scope.summary = summary;
             }
-            $scope.calc();
         });
+
+        window.onload = function () {
+            Particles.init({
+                selector: '#myCanvas',
+                color: '#ffffff',
+                connectParticles: true,
+                minDistance: 140
+            });
+        };
+
     </script>
+    <style>
+
+        html, body {
+            margin: 0;
+        }
+
+        #myCanvas {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+    </style>
 </head>
-<body data-spy="scroll" data-target="nav">
-<a href="https://github.com/ahmedengu/SystemModelingSimulator"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<body>
+<canvas id="myCanvas"></canvas>
+
+<a href="https://github.com/ahmedengu/SystemModelingSimulator"><img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
+        alt="Fork me on GitHub"
+        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 <header id="header-3" class="soft-scroll header-3">
     <section class="hero">
         <div class="container table-responsive">
             <div class="brand">
-                <a href="#" class="black white-hover text-capitalize lead">Modeling</a>
+                <a href="#" class="white clouds-hover text-capitalize lead">Modeling</a>
             </div>
-            <div class="navicon">
-            </div>
-            <form role="form">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="editContent">
-                        <h3>Enter Your Simulation Options<br></h3>
-                    </div>
-                    <div class="editContent">
-                        <div class="form-group">
-                            <input type="number" class="form-control" value="10" placeholder="Number of Customers"
-                                   name="customers" ng-model="customers">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Service Times</label>
-                            <textarea class="form-control" rows="3" name="serviceT" ng-model="serviceT">
-</textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <button class="btn btn-danger btn-block" ng-click="calc()">Compute</button>
-                </div>
-            </form>
-            <table class="table  table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Interarrival<br></th>
-                    <th>arrival</th>
-                    <th>serviceTime</th>
-                    <th>service Begin</th>
-                    <th>waiting Time</th>
-                    <th>service End</th>
-                    <th>time In System</th>
-                    <th>idle Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="iteration in iterations">
-                    <td>{{iteration.i}}</td>
-                    <td>{{iteration.interArrival}}</td>
-                    <td>{{iteration.arrival}}</td>
-                    <td>{{iteration.serviceTime}}</td>
-                    <td>{{iteration.serviceBegin}}</td>
-                    <td>{{iteration.waitingTime}}</td>
-                    <td>{{iteration.serviceEnd}}</td>
-                    <td>{{iteration.timeInSystem}}</td>
-                    <td>{{iteration.idleTime}}</td>
-                </tr>
-                </tbody>
-            </table>
 
-            <table class="table table-striped ">
-                <tbody>
-                <tr>
-                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑊𝑎𝑖𝑡𝑖𝑛𝑔 𝑇𝑖𝑚𝑒</td>
-                    <td>{{summary.avg}}</td>
-                </tr>
-                <tr>
-                    <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 (𝑤𝑎𝑖𝑡)</td>
-                    <td>{{summary.wait}}</td>
-                </tr>
-                <tr>
-                    <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝑖𝑑𝑙𝑒 𝑠𝑒𝑟𝑣𝑒𝑟</td>
-                    <td>{{summary.idle}}</td>
-                </tr>
-                <tr>
-                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑡𝑖𝑚𝑒</td>
-                    <td>{{summary.serv}}</td>
-                </tr>
-                <tr>
-                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑎𝑟𝑟𝑖𝑣𝑎𝑙𝑠</td>
-                    <td>{{summary.inter}}</td>
-                </tr>
-                <tr>
-                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑤𝑎𝑖𝑡𝑖𝑛𝑔 𝑡𝑖𝑚𝑒 𝑜𝑓 𝑡ℎ𝑜𝑠𝑒 𝑤ℎ𝑜 𝑤𝑎𝑖𝑡</td>
-                    <td>{{summary.whoWait}}</td>
-                </tr>
-                <tr>
-                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑎 𝑐𝑢𝑠𝑡𝑜𝑚𝑒𝑟 𝑠𝑝𝑒𝑛𝑑𝑠 𝑖𝑛 𝑡ℎ𝑒 𝑠𝑦𝑠𝑡𝑒𝑚</td>
-                    <td>{{summary.avgInSys}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="editContent">
+                    <h3 class="clouds">Enter Your Simulation Options<br></h3>
+                </div>
+                <div class="editContent">
+                    <div class="form-group">
+                        <input type="number" class="form-control" value="10" placeholder="Number of Customers"
+                               name="customers" ng-model="customers">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label clouds">Service Times</label>
+                        <textarea class="form-control" rows="3" name="serviceT" ng-model="serviceT">
+</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <button class="btn btn-danger btn-block" ng-click="calc()"
+                        onclick="$('#tablesDiv').removeClass('hidden')">Compute
+                </button>
+            </div>
+
+            <div class="hidden" id="tablesDiv">
+                <table class="bg-white table  table-hover ">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Interarrival<br></th>
+                        <th>arrival</th>
+                        <th>serviceTime</th>
+                        <th>service Begin</th>
+                        <th>waiting Time</th>
+                        <th>service End</th>
+                        <th>time In System</th>
+                        <th>idle Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="iteration in iterations">
+                        <td>{{iteration.i}}</td>
+                        <td>{{iteration.interArrival}}</td>
+                        <td>{{iteration.arrival}}</td>
+                        <td>{{iteration.serviceTime}}</td>
+                        <td>{{iteration.serviceBegin}}</td>
+                        <td>{{iteration.waitingTime}}</td>
+                        <td>{{iteration.serviceEnd}}</td>
+                        <td>{{iteration.timeInSystem}}</td>
+                        <td>{{iteration.idleTime}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="bg-white table table-striped ">
+                    <tbody>
+                    <tr>
+                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑊𝑎𝑖𝑡𝑖𝑛𝑔 𝑇𝑖𝑚𝑒</td>
+                        <td>{{summary.avg}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 (𝑤𝑎𝑖𝑡)</td>
+                        <td>{{summary.wait}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝑃𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝑖𝑑𝑙𝑒 𝑠𝑒𝑟𝑣𝑒𝑟</td>
+                        <td>{{summary.idle}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑡𝑖𝑚𝑒</td>
+                        <td>{{summary.serv}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑎𝑟𝑟𝑖𝑣𝑎𝑙𝑠</td>
+                        <td>{{summary.inter}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑤𝑎𝑖𝑡𝑖𝑛𝑔 𝑡𝑖𝑚𝑒 𝑜𝑓 𝑡ℎ𝑜𝑠𝑒 𝑤ℎ𝑜 𝑤𝑎𝑖𝑡</td>
+                        <td>{{summary.whoWait}}</td>
+                    </tr>
+                    <tr>
+                        <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑎 𝑐𝑢𝑠𝑡𝑜𝑚𝑒𝑟 𝑠𝑝𝑒𝑛𝑑𝑠 𝑖𝑛 𝑡ℎ𝑒 𝑠𝑦𝑠𝑡𝑒𝑚</td>
+                        <td>{{summary.avgInSys}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 </header>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/plugins.js"></script>
-<script src="https://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src="js/bskit-scripts.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/MhdAljuboori/6ea3a3fa48248e3a132a/raw/animator.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+
+
 </body>
 </html>
