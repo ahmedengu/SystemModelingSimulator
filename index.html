@@ -127,7 +127,10 @@
                     avg: iteration.waitingTime / customers,
                     wait: waitCustomers / customers,
                     idle: iteration.idleTime / totalRun,
-                    serv: iteration.serviceTime / customers
+                    serv: iteration.serviceTime / customers,
+                    inter: iteration.interArrival / customers - 1,
+                    whoWait: iteration.waitingTime / waitCustomers,
+                    avgInSys: iteration.serviceTime / customers
                 };
                 $scope.summary = summary;
             }
@@ -212,7 +215,18 @@
                     <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑡𝑖𝑚𝑒</td>
                     <td>{{summary.serv}}</td>
                 </tr>
-
+                <tr>
+                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑎𝑟𝑟𝑖𝑣𝑎𝑙𝑠</td>
+                    <td>{{summary.inter}}</td>
+                </tr>
+                <tr>
+                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑤𝑎𝑖𝑡𝑖𝑛𝑔 𝑡𝑖𝑚𝑒 𝑜𝑓 𝑡ℎ𝑜𝑠𝑒 𝑤ℎ𝑜 𝑤𝑎𝑖𝑡</td>
+                    <td>{{summary.whoWait}}</td>
+                </tr>
+                <tr>
+                    <td>𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑡𝑖𝑚𝑒 𝑎 𝑐𝑢𝑠𝑡𝑜𝑚𝑒𝑟 𝑠𝑝𝑒𝑛𝑑𝑠 𝑖𝑛 𝑡ℎ𝑒 𝑠𝑦𝑠𝑡𝑒𝑚</td>
+                    <td>{{summary.avgInSys}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
