@@ -122,7 +122,7 @@
                     idleTime: iteration.idleTime / customers
                 });
 
-                $scope.iterations = iterations.splice(1);
+                $scope.iterations = iterations;
                 var summary = {
                     avg: iteration.waitingTime / customers,
                     wait: waitCustomers / customers,
