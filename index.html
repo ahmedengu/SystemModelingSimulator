@@ -212,7 +212,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="iteration in iterations">
+                    <tr ng-repeat="iteration in iterations" ng-if="$index > 0">
                         <td>{{iteration.i}}</td>
                         <td>{{iteration.interArrival}}</td>
                         <td>{{iteration.arrival}}</td>
